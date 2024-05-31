@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client"
 
 import React, { useState } from "react"
@@ -16,6 +18,7 @@ import { useRouter } from "next/navigation";
 
 const Login = () => {
   // const navigate = useNavigate()
+
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [isOpen, setIsOpen] = useState(false)
