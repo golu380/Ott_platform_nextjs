@@ -1,9 +1,6 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "react/no-unescaped-entities": "on",
-    "@next/next/no-page-custom-font": "on"
-  }
+  "extends": "next/core-web-vitals"
+  
 }
 
 // {

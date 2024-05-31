@@ -1,16 +1,16 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState } from "react"
 // import { useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast'
+import toast from "react-hot-toast"
 // import axios from '../axios'
-import Register from '../register/page'
+import Register from "../register/page"
 
 
-import './Login.css'
-import Link from 'next/link'
-import { loginUserAction } from '../actions'
-import { useRouter } from 'next/navigation';
+import "./Login.css"
+import Link from "next/link"
+import { loginUserAction } from "../actions"
+import { useRouter } from "next/navigation";
 // import { UserGroupIcon } from '@heroicons/react/24/outline'
 
 
