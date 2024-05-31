@@ -52,22 +52,22 @@ const Login = () => {
 
   return (
     <>
-      <section class='form-container'>
+      <section className='form-container'>
         {loading &&
           toast('Loggin in...', {
             icon: '🔃'
           })}
 
-        <div class='form-container'>
-          <p class='title'>Login</p>
+        <div className='form-container'>
+          <p className='title'>Login</p>
           <p>{message}</p>
-          <form class='form'>
-            <div class='input-group'>
-              <label for='username'>E-mail</label>
+          <form className='form'>
+            <div className='input-group'>
+              <label htmlFor='username'>E-mail</label>
               <input type='text' value={email} name='username' id='username' onChange={(e) => setemail(e.target.value)}/>
             </div>
-            <div class='input-group'>
-              <label for='password'>Password</label>
+            <div className='input-group'>
+              <label htmlFor='password'>Password</label>
               <input
                 type='password'
                 name='password'
@@ -76,21 +76,21 @@ const Login = () => {
                 placeholder=''
                 onChange={(e) => setpassword(e.target.value)}
               />
-              <div class='forgot'>
+              <div className='forgot'>
                 <a rel='noopener noreferrer' href='#'>
                   Forgot Password ?
                 </a>
               </div>
             </div>
          
-            <button onClick={handleLogin} class='sign'>Sign in</button>
+            <button onClick={handleLogin} className='sign'>Sign in</button>
           </form>
           <br />
           <br />
           <br />
-          <p class='signup'>
+          <p className='signup'>
             Don't have an account?
-            <Link onClick={togglePopup} class='' href="/register">
+            <Link onClick={togglePopup} className='' href="/register">
               Sign up
             </Link>
           </p>
@@ -100,7 +100,7 @@ const Login = () => {
             <div className='popup-r'>
               <Register />
               <button  className='cls-btn c-r' onClick={togglePopup}>
-                <i class='fa-solid fa-xmark'></i>
+                <i className='fa-solid fa-xmark'></i>
               </button>
             </div>
           </div>
