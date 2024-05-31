@@ -9,7 +9,7 @@ import { useParams } from "next/navigation";
 import { validateUserAction } from "../actions";
 import {logoutAction} from "../actions/index"
 // import { useUser } from "../Contexts/userContext";
-import Login from "../login/page";
+import Login from "../login/page"
 import "./Header.css"
 
 
@@ -176,7 +176,7 @@ useEffect(() => {
           <div className='popup'>
             <Login />
             <button className='cls-btn' onClick={togglePopup}>
-              <i class='fa-solid fa-xmark'></i>
+              <i className='fa-solid fa-xmark'></i>
             </button>
           </div>
         </div>
