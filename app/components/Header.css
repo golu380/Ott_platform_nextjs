@@ -1,0 +1,37 @@
+/* Add this to your global CSS file or component-specific CSS */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile-toggle {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .profile-dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
