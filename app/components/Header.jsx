@@ -9,7 +9,7 @@ import { useParams } from "next/navigation";
 import { validateUserAction } from "../actions";
 import {logoutAction} from "../actions/index"
 // import { useUser } from "../Contexts/userContext";
-// import Login from "../login/page"
+import Login from "../login/page"
 import "./Header.css"
 
 
