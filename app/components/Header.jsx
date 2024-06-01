@@ -1,5 +1,5 @@
 "use client";
-/* eslint-disable */
+
 import { useState,useEffect } from "react";
 import { Dialog } from "@headlessui/react";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { useParams } from "next/navigation";
 import { validateUserAction } from "../actions";
 import {logoutAction} from "../actions/index"
 // import { useUser } from "../Contexts/userContext";
-import Login from "../login/page" // eslint-disable-line
+import Login from "../login/page"
 import "./Header.css"
 
 
@@ -174,9 +174,7 @@ useEffect(() => {
       {isOpen && (
         <div className='pop-overlay'>
           <div className='popup'>
-          /* eslint-disable */
             <Login />
-            /* eslint-enable */
             <button className='cls-btn' onClick={togglePopup}>
               <i className='fa-solid fa-xmark'></i>
             </button>
