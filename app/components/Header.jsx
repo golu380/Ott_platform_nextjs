@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { useState,useEffect } from "react";
 import { Dialog } from "@headlessui/react";
 import Link from "next/link";
@@ -13,42 +12,35 @@ import Login from "../login/page"
 import "./Header.css"
 
 
-export default function Header() {
+export default function Header(props) {
+  console.log(props.userData)
+
+  
 
   const [isOpen, setIsOpen] = useState(false);
   const [userinfo, setUserinfo] = useState(null)
   const [isdrop, setIsdrop] = useState(false);
-  // console.log( success)
-  
-// const userinfo = {
-//   name,
-//   email,
-//   success,
-//   mobile
-// }
-// console.log(userinfo)
-// console.log(success)
-// const [islogin, setLogin] = useState(success)
-// console.log(!success)
-useEffect(() => {
 
-  validateUserAction().then(userData => {
-    if(userData.success){
-      setUserinfo(userData)
-    }
-    console.log(userData)
-    
-   
-  
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userData = await validateUserAction();
+        setUserinfo(userData);
+        
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
 
-}, []);
+    fetchData();
+  }, []);
   const togglePopup = () => {
     setIsOpen(!isOpen)
   }
   const handleLogout = async (e) => {
     // Add your logout logic here
-    logoutAction()
+    const res = await logoutAction()
+    console.log(res)
     setUserinfo(null)
 
     console.log('Logging out...');
@@ -97,7 +89,7 @@ useEffect(() => {
            
             }
             {
-              (userinfo ) ? (
+              (userinfo?.data && userinfo?.success===true ) ? (
                 <div className="profile-dropdown">
                 <button className="profile-toggle" onClick={toggleDropdown}>
                   {userinfo.data.name}
@@ -184,3 +176,4 @@ useEffect(() => {
     </>
   );
 }
+

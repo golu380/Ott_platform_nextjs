@@ -37,6 +37,7 @@ export default function RootLayout({ children }) {
   const [success,setSuccess] = useState()
   const [mobile,setMobile] = useState()
   const [token,settoken] = useState()
+  
 //   useEffect(() => {
 
 //     validateUserAction().then(userData => {

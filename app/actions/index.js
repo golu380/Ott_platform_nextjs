@@ -138,7 +138,7 @@ export async function loginUserAction(formData){
         }
 
     }catch(error){
-        console.log(err)
+        console.log(error)
         return {
             message:"server inernal error",
             islogin:false

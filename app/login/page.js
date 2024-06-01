@@ -34,6 +34,7 @@ const Login = () => {
     console.log(email,password)
 
     const result = await loginUserAction({email,password})
+    console.log(result)
     if(result?.islogin === true){
       router.push('/')
       setIslogin(true)
