@@ -174,7 +174,9 @@ useEffect(() => {
       {isOpen && (
         <div className='pop-overlay'>
           <div className='popup'>
-            {/* <Login /> */}
+          /* eslint-disable */
+            <Login />
+            /* eslint-enable */
             <button className='cls-btn' onClick={togglePopup}>
               <i className='fa-solid fa-xmark'></i>
             </button>
