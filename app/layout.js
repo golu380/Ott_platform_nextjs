@@ -10,6 +10,7 @@ import { UserProvider } from "./Contexts/userContext";
 import { validateUserAction } from "./actions";
 import { useState ,useEffect} from "react";
 
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -30,36 +31,41 @@ const dm = DM_Serif_Display({
 // };
 export default function RootLayout({ children }) {
 
-  // console.log(children)
+  console.log(children)
   const [user,setUser] = useState(null)
   const [name,setName] = useState();
   const [email,setEmail] = useState()
   const [success,setSuccess] = useState()
   const [mobile,setMobile] = useState()
   const [token,settoken] = useState()
-  
-//   useEffect(() => {
+  const [islogin,setIslogin] = useState(false)
+  // console.log(islogin)
 
-//     validateUserAction().then(userData => {
+  useEffect(() => {
 
-//       console.log(userData.data)
-//       console.log(JSON.stringify(userData.success))
-//       setName(userData.data.name);
-//       setEmail(userData.data.email);
-//       setSuccess(JSON.stringify(userData.success))
-//       setMobile(userData.data.mobile)
+    validateUserAction().then(userData => {
+      console.log(userData)
+      setUser(userData)
+      setIslogin(localStorage.getItem("islogin"))
     
-//     });
+    });
  
-// }, []);
+}, []);
+console.log(islogin)
+function handleLoad(){
 
+}
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${dm.variable}`}>
+      <body className={`${inter.variable} ${dm.variable}`  }>
       
         <SmoothScroll>
           
-          <Header  />
+         {
+          islogin ? (<Header user={user} />): <Header user={null}/>
+
+         }
+         {/* <Header /> */}
          
           {children}
           
@@ -72,3 +78,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

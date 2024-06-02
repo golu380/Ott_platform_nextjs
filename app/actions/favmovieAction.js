@@ -2,6 +2,8 @@
 
 import connectToDB from "../api/database";
 import MyFavMovie from "../api/models/favoriteList";
+import { validateUserAction } from ".";
+import User from "../api/models/user";
 
 export async function favMovieAction(movie_id,user_id){
     console.log(movie_id,user_id)
@@ -37,6 +39,7 @@ export async function favMovieAction(movie_id,user_id){
 }
 
 export async function favmovieGetAction(user_id){
+    console.log(user_id)
     await connectToDB();
     try{
         const movies_ids = await MyFavMovie.find({user:user_id})
@@ -54,6 +57,25 @@ export async function favmovieGetAction(user_id){
         console.log(error)
         return {
             error :"Server internal error"
+        }
+    }
+}
+export async function getMovieId(){
+    await connectToDB();
+    try{
+        const user_detail = await validateUserAction()
+        console.log(user_detail)
+        const movies_id = await MyFavMovie.find({user:user_detail.data_id})
+        return {
+            message:"successfully fetched",
+            data: JSON.parse(JSON.stringify(movies_id))
+        }
+    }catch(err){
+
+        console.log(err)
+        return {
+            message:"error occured"
+            
         }
     }
 }

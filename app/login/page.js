@@ -11,19 +11,26 @@ import './Login.css'
 import Link from 'next/link'
 import { loginUserAction } from '../actions'
 import { useRouter } from 'next/navigation';
+import useAuth from './useAuth'
 // import { UserGroupIcon } from '@heroicons/react/24/outline'
 
 
 const Login = () => {
   // const navigate = useNavigate()
   const [email, setemail] = useState('')
+  const isLoggedIn = useAuth();
+  const router = useRouter()
+  // If user is already logged in, redirect to dashboard
+  if (isLoggedIn) {
+    router.push('/')
+  }
   const [password, setpassword] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [role , setRole] = useState('user')
   const [message,setMessage] = useState("")
   const [islogin,setIslogin] = useState("false")
- const router = useRouter()
+
   const handleRadioChange = (event) => {
     setRole(event.target.value);
   };
@@ -36,9 +43,17 @@ const Login = () => {
     const result = await loginUserAction({email,password})
     console.log(result)
     if(result?.islogin === true){
-      router.push('/')
+      
       setIslogin(true)
       setMessage(result.message)
+      localStorage.setItem('islogin',result.islogin)
+      setTimeout(() => {
+        window.location.reload();
+       
+    }, 2000);
+
+    router.push('/');
+      
       
     }
     

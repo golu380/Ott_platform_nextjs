@@ -11,29 +11,46 @@ import {logoutAction} from "../actions/index"
 import Login from "../login/page"
 import "./Header.css"
 
-
-export default function Header(props) {
-  console.log(props.userData)
-
-  
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [userinfo, setUserinfo] = useState(null)
-  const [isdrop, setIsdrop] = useState(false);
+const useExampleHook = (props) => {
+  const [userinfo, setUserinfo] = useState(props);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userData = await validateUserAction();
-        setUserinfo(userData);
-        
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
+    // Do something with the value when it changes
+    console.log('Value changed:', userinfo);
+  }, [userinfo]); // Run the effect whenever the value changes
 
-    fetchData();
-  }, []);
+  return [userinfo, setUserinfo]; // Return state and updater function
+};
+
+export default function Header(props) {
+  console.log(props)
+  const [isOpen, setIsOpen] = useState(false);
+  const [userinfo, setUserinfo] = useExampleHook(props)
+  const [isdrop, setIsdrop] = useState(false);
+  const [isloading,setLoading] = useState(true)
+  // const fetchData = () =>{
+  //   validateUserAction().then((res)=>{
+  //     setUserinfo(res)
+  //     setLoading(false)
+
+  //   });
+  // }
+  
+  
+console.log(userinfo)
+  // useEffect(() => {
+  //   // const fetchData = async () => {
+  //   //   try {
+  //   //     const userData = await validateUserAction();
+  //   //     setUserinfo(userData);
+        
+  //   //   } catch (error) {
+  //   //     console.error('Error fetching user data:', error);
+  //   //   }
+  //   // };
+
+  //   fetchData();
+  // }, []);
   const togglePopup = () => {
     setIsOpen(!isOpen)
   }
@@ -44,6 +61,7 @@ export default function Header(props) {
     setUserinfo(null)
 
     console.log('Logging out...');
+    location.reload()
   };
   const toggleDropdown = () => {
     setIsdrop(!isdrop);
@@ -59,7 +77,7 @@ export default function Header(props) {
     // {name:"Login",href:"/#login"}
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  console.log(userinfo)
+ 
   return (
     <>
       <header className="fixed top-0 z-40 inset-x-0 lg:px-10 px-6 py-6">
@@ -89,10 +107,10 @@ export default function Header(props) {
            
             }
             {
-              (userinfo?.data && userinfo?.success===true ) ? (
+              (props?.user && props?.user?.success === true)?(
                 <div className="profile-dropdown">
                 <button className="profile-toggle" onClick={toggleDropdown}>
-                  {userinfo.data.name}
+                  {props.user.data.name}
                   
                 </button>
                 {isdrop && (
@@ -102,17 +120,15 @@ export default function Header(props) {
                   </div>
                 )}
               </div>
-                 
-              ):(
-               
-                <Link 
+              ):
+              <Link 
                 href="/login"
                 className={`font-semibold text-lg text-neutral-400 hover:text-neutral-200 transition duration-300 ease-in-out`}
                 >
                  
                   <button className="bg-white/10 backdrop-blur-3xl rounded-full text-sm px">Login</button>
                 </Link>
-              )
+              
             }
             
           </div>
@@ -177,3 +193,17 @@ export default function Header(props) {
   );
 }
 
+
+// export async function getStaticProps() {
+//   // Call an external API endpoint to get posts
+//   const res = await validateUserAction()
+//   const posts = await res.json()
+ 
+//   // By returning { props: { posts } }, the Blog component
+//   // will receive `posts` as a prop at build time
+//   return {
+//     props: {
+//       posts,
+//     },
+//   }
+// }
