@@ -11,19 +11,17 @@ import './Login.css'
 import Link from 'next/link'
 import { loginUserAction } from '../actions'
 import { useRouter } from 'next/navigation';
-import useAuth from './useAuth'
+
 // import { UserGroupIcon } from '@heroicons/react/24/outline'
 
 
 const Login = () => {
   // const navigate = useNavigate()
   const [email, setemail] = useState('')
-  const isLoggedIn = useAuth();
+
   const router = useRouter()
   // If user is already logged in, redirect to dashboard
-  if (isLoggedIn) {
-    router.push('/')
-  }
+ 
   const [password, setpassword] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
