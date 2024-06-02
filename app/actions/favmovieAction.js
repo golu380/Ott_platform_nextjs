@@ -64,8 +64,11 @@ export async function getMovieId(){
     await connectToDB();
     try{
         const user_detail = await validateUserAction()
-        console.log(user_detail)
-        const movies_id = await MyFavMovie.find({user:user_detail.data_id})
+        // console.log(user_detail.data._id)
+        const userid = user_detail.data._id
+
+        const movies_id = await MyFavMovie.find({user:userid})
+        // console.log(movies_id)
         return {
             message:"successfully fetched",
             data: JSON.parse(JSON.stringify(movies_id))

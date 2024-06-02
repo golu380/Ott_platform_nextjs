@@ -31,7 +31,7 @@ const dm = DM_Serif_Display({
 // };
 export default function RootLayout({ children }) {
 
-  console.log(children)
+  // console.log(children)
   const [user,setUser] = useState(null)
   const [name,setName] = useState();
   const [email,setEmail] = useState()

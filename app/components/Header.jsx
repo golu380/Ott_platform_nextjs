@@ -115,7 +115,7 @@ console.log(userinfo)
                 </button>
                 {isdrop && (
                   <div className="dropdown-content">
-                    <Link href="#">Profile</Link>
+                    <Link href="/myfavlist">My favorites</Link>
                     <Link href="#" onClick={handleLogout}>Logout</Link>
                   </div>
                 )}
@@ -174,6 +174,30 @@ console.log(userinfo)
                   {item.name}
                 </Link>
               ))}
+                {
+              (props?.user && props?.user?.success === true)?(
+                <div className="profile-dropdown">
+                <button className="profile-toggle" onClick={toggleDropdown}>
+                  {props.user.data.name}
+                  
+                </button>
+                {isdrop && (
+                  <div className="dropdown-content">
+                    <Link href="/myfavlist" onClick={()=>setMobileMenuOpen(false)}>My favorites</Link>
+                    <Link href="#" onClick={handleLogout}>Logout</Link>
+                  </div>
+                )}
+              </div>
+              ):
+              <Link 
+                href="/login"
+                className={`font-semibold text-lg text-neutral-400 hover:text-neutral-200 transition duration-300 ease-in-out`}
+                >
+                 
+                  <button className="bg-white/10 backdrop-blur-3xl rounded-full text-sm px" onClick={()=>setMobileMenuOpen(false)}>Login</button>
+                </Link>
+              
+            }
             </div>
           </Dialog.Panel>
         </Dialog>

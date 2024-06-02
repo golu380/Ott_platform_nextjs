@@ -22,6 +22,7 @@ export default function Overview(props) {
     console.log(userDetail)
     if(userDetail.data && userDetail.success){
       const res = await favMovieAction(userDetail.data._id,id)
+      alert("movies is added to list check/profile/fav")
       console.log(res)
     }else{
       console.log("user not found")

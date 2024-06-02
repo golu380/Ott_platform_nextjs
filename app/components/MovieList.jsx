@@ -22,6 +22,7 @@ export default function MovieList(props) {
 
     fetchData();
   }, []);
+  console.log(data)
   return (
     <>
       {data ? (
